@@ -131,7 +131,7 @@ class Container
      * 
      * @param string $id Component or service identifier
      * @return boolean Whether the identifier is registered
-     * @since 0.1.1
+     * @since 0.1
      */
     public function has($id)
     {
@@ -305,8 +305,9 @@ class Container
      * @param string $id Component or service identifier
      * @return boolean Whether the identifier is registered
      * @since 0.1
-     * @deprecated Use \Achsoft\Component\ServiceLocator\Container::has() instead.
-     *     Will be removed.
+     * @deprecated To be removed in 0.2. 
+     *     Use \Achsoft\Component\ServiceLocator\Container::has() instead.
+     *     
      */
     public function registered($id)
     {
