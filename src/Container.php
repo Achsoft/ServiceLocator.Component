@@ -79,10 +79,12 @@ class Container
      * 
      * @param string $id Component or service identifier
      * @param \Closure $newDefinition New component or service definition
-     * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException if the identifier is not registered
-     * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException if the identifier is locked
-     * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException if the closure does not have exactly
-     *   two parameters
+     * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
+     *     if the identifier is not registered
+     * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException 
+     *     if the identifier is locked
+     * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException
+     *     if the closure does not have exactly two parameters
      * @since 0.1
      */
     public function extend($id, \Closure $newDefinition)
@@ -131,7 +133,7 @@ class Container
      * 
      * @param string $id Component or service identifier
      * @return boolean Whether the identifier is registered
-     * @since 0.1
+     * @since 0.1.1
      */
     public function has($id)
     {
@@ -172,7 +174,8 @@ class Container
      * 
      * @param string $id Component or service identifier
      * @param mixed $value Component or service definition
-     * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException if the identifier is locked
+     * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException 
+     *     if the identifier is locked
      * @since 0.1
      */
     public function modify($id, $value)
@@ -235,8 +238,10 @@ class Container
      * 
      * @param string $id Component or service indentifier
      * @param mixed $definition Component or service definition
-     * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidIdentifierException if the identifier is already registered
-     * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException if given closure have more than one parameter
+     * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidIdentifierException
+     *     if the identifier is already registered
+     * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException
+     *     if given closure have more than one parameter
      * @since 0.1
      */
     public function register($id, $definition)
@@ -282,7 +287,8 @@ class Container
      * @param string $newId New component or service identifer
      * @param string $id Component or service identifier
      * @param \Closure $newDefinition Extend the definition
-     * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException if the identifier is not registered
+     * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
+     *     if the identifier is not registered
      * @since 0.1
      */
     public function registerAs($newId, $id, \Closure $newDefinition = null)
@@ -305,9 +311,8 @@ class Container
      * @param string $id Component or service identifier
      * @return boolean Whether the identifier is registered
      * @since 0.1
-     * @deprecated To be removed in 0.2. 
-     *     Use \Achsoft\Component\ServiceLocator\Container::has() instead.
-     *     
+     * @deprecated Use \Achsoft\Component\ServiceLocator\Container::has() instead.
+     *     Will be removed.
      */
     public function registered($id)
     {
@@ -319,7 +324,8 @@ class Container
      * 
      * @param string $name Component or service identifier
      * @return mixed Resolved component or service instance
-     * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException if the identifier is not registered if the identifier is not registered
+     * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
+     *     if the identifier is not registered if the identifier is not registered
      * @since 0.1
      */
     public function resolve($id)
@@ -345,7 +351,8 @@ class Container
      * Unlock a locked component or service definition.
      * 
      * @param string $name Component or service identifier
-     * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException if the identifier is not registered
+     * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
+     *     if the identifier is not registered
      * @since 0.1
      */
     public function unlock($id)
@@ -365,7 +372,8 @@ class Container
      * Unregister a component or service definition.
      * 
      * @param string $name Component or service identifier
-     * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException if the identifier is locked
+     * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException
+     *     if the identifier is locked
      * @since 0.1
      */
     public function unregister($id)
