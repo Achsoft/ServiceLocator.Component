@@ -127,6 +127,18 @@ class Container
     }
     
     /**
+     * Check whether a component or service had been registered.
+     * 
+     * @param string $id Component or service identifier
+     * @return boolean Whether the identifier is registered
+     * @since 0.1.1
+     */
+    public function has($id)
+    {
+        return array_key_exists($id, $this->registry);
+    }
+    
+    /**
      * Lock or protect a component or service definition from being modified.
      * 
      * @param string $id Component or service identifier
@@ -229,7 +241,7 @@ class Container
      */
     public function register($id, $definition)
     {
-        if ($this->registered($id)) {
+        if ($this->has($id)) {
             $message = 'Identifier %s is already registered.';
             throw new InvalidIdentifierException(sprintf($message, $id));
         }
@@ -275,7 +287,7 @@ class Container
      */
     public function registerAs($newId, $id, \Closure $newDefinition = null)
     {
-        if (!$this->registered($id)) {
+        if (!$this->has($id)) {
             $message = 'Identifier %s is not registered.';
             throw new NotFoundException(sprintf($message, $id));
         }
@@ -293,10 +305,12 @@ class Container
      * @param string $id Component or service identifier
      * @return boolean Whether the identifier is registered
      * @since 0.1
+     * @deprecated Use \Achsoft\Component\ServiceLocator\Container::has() instead.
+     *     Will be removed.
      */
     public function registered($id)
     {
-        return array_key_exists($id, $this->registry);
+        return $this->has($id);
     }
     
     /**

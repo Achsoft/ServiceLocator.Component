@@ -36,9 +36,9 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     
     public function testRegisteredAndResolve()
     {
-        $this->assertTrue($this->sc->registered('first'));
-        $this->assertTrue($this->sc->registered('second'));
-        $this->assertTrue($this->sc->registered('dependant'));
+        $this->assertTrue($this->sc->has('first'));
+        $this->assertTrue($this->sc->has('second'));
+        $this->assertTrue($this->sc->has('dependant'));
         
         $dependant = $this->sc->resolve('dependant');
         
@@ -99,7 +99,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function testUnregister()
     {
         $this->sc->unregister('first');
-        $this->assertFalse($this->sc->registered('first'));
+        $this->assertFalse($this->sc->has('first'));
     }
     
     public function testUnregisterLockedDefinition()
@@ -111,7 +111,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     
     public function testLock()
     {
-        $this->assertTrue($this->sc->registered('locked'));
+        $this->assertTrue($this->sc->has('locked'));
         $this->assertTrue($this->sc->locked('locked'));
     }
     
