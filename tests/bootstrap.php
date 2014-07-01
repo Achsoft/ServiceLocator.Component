@@ -18,4 +18,4 @@
 
 $basePath = realpath(__DIR__ . '/..');
 $loader = require $basePath . "/vendor/autoload.php";
-$loader->addPsr4('Tests\\', 'tests/');
+$loader->addPsr4('Test\\', 'tests/');

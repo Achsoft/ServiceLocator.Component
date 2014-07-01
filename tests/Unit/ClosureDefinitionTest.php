@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/mit-license.php The MIT License (MIT)
  */
 
-namespace Tests\Unit;
+namespace Test\Unit;
 
 /**
  * Unit test for closure definition.

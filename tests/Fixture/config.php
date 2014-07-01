@@ -11,27 +11,24 @@
  */
 
 /**
- * Configuration file
+ * Test configuration file
  *
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
- * @package Achsoft\Component\ServiceLocator
- * @version 1.0
- * @since 1.0
  */
 return [
     
     // string classname
-    'first' => '\Tests\Unit\Fixtures\FirstDependency',
+    'first' => '\Test\Fixture\FirstDependency',
     
     // closure
     'second' => function ($sl) {
-        return new \Tests\Unit\Fixtures\SecondDependency();
+        return new \Test\Fixture\SecondDependency();
     },
     
     // closure with two dependencies
     'dependant' => function ($sl) {
         $first = $sl->resolve('first');
         $second = $sl->resolve('second');
-        return new \Tests\Unit\Fixtures\Dependant($first, $second);
+        return new \Test\Fixture\Dependant($first, $second);
     }
 ];

@@ -10,10 +10,10 @@
  * @license http://opensource.org/licenses/mit-license.php The MIT License (MIT)
  */
 
-namespace Tests\Unit\Fixtures;
+namespace Test\Fixture;
 
-use Tests\Unit\Fixtures\FirstDependency;
-use Tests\Unit\Fixtures\SecondDependency;
+use Test\Fixture\FirstDependency;
+use Test\Fixture\SecondDependency;
 
 /**
  * Fixture class that depends another classes.

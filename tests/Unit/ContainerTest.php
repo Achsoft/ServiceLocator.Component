@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/mit-license.php The MIT License (MIT)
  */
 
-namespace Tests\Unit;
+namespace Test\Unit;
 
 /**
  * ServiceLocator test class.
@@ -22,7 +22,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // Array configurations
-        $config = require __DIR__ . '/Fixtures/config.php';
+        $config = require __DIR__ . '/../Fixture/config.php';
         
         // Service Locator instance
         $this->sc = new \Achsoft\Component\ServiceLocator\Container($config);
@@ -42,9 +42,9 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         
         $dependant = $this->sc->resolve('dependant');
         
-        $this->assertInstanceOf('\Tests\Unit\Fixtures\Dependant', $dependant);
-        $this->assertInstanceOf('\Tests\Unit\Fixtures\FirstDependency', $dependant->first);
-        $this->assertInstanceOf('\Tests\Unit\Fixtures\SecondDependency', $dependant->second);
+        $this->assertInstanceOf('\Test\Fixture\Dependant', $dependant);
+        $this->assertInstanceOf('\Test\Fixture\FirstDependency', $dependant->first);
+        $this->assertInstanceOf('\Test\Fixture\SecondDependency', $dependant->second);
     }
     
     public function testRegisterSameIdentifier()
@@ -161,12 +161,12 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function testExtend()
     {
         $this->sc->extend('dependant', function ($sl, $d) {
-            $d->first = new \Tests\Unit\Fixtures\ThirdDependency();
+            $d->first = new \Test\Fixture\ThirdDependency();
             return $d;
         });
         
         $dependant = $this->sc->resolve('dependant');
-        $this->assertInstanceOf('\Tests\Unit\Fixtures\ThirdDependency', $dependant->first);
+        $this->assertInstanceOf('\Test\Fixture\ThirdDependency', $dependant->first);
     }
     
     public function testExtendStringClassname()
@@ -210,7 +210,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function testRegisterAs()
     {
         $this->sc->registerAs('tenth', 'first');
-        $this->assertInstanceOf('\Tests\Unit\Fixtures\FirstDependency', $this->sc->resolve('tenth'));
+        $this->assertInstanceOf('\Test\Fixture\FirstDependency', $this->sc->resolve('tenth'));
     }
     
     /**
