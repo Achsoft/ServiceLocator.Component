@@ -1,0 +1,31 @@
+{
+    "name": "achsoft/service-locator",
+    "type": "library",
+    "description": "Provides service container component that contains definitions of how another objects (components or services) are constructed in an application. It is an implementation of service locator pattern that enables dependency injection.",
+    "keywords": [
+        "dependency injection",
+        "inversion of control",
+        "service locator",
+        "service container"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Achmad F. Ibrahim",
+            "email": "acfatah@gmail.com",
+            "homepage": "http://github.com/achsoft",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": "~5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Achsoft\\Component\\ServiceLocator\\": "src/"
+        }
+    }
+}
