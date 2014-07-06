@@ -22,7 +22,7 @@ use Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException;
  * 
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ServiceLocator
- * @version 0.1.2
+ * @version 0.1.3
  * @since 0.1.0
  */
 class Container
@@ -85,7 +85,7 @@ class Container
      *     if the identifier is locked
      * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException
      *     if the closure does not have exactly two parameters
-     * @since 0.1.0
+     * @since 0.1.3
      */
     public function extend($id, \Closure $newDefinition)
     {
