@@ -120,6 +120,14 @@ class Container
             };
         }
         
+        // wrap object as a closure
+        if (is_object($this->registry[$id]) && !$this->registry[$id] instanceOf \Closure ) {
+            $object = $this->registry[$id];
+            $this->registry[$id] = function ($sl) use ($object) {
+                return $object;
+            };
+        }
+        
         $oldDefinition = $this->registry[$id];
         $extended = function ($sl) use ($oldDefinition, $newDefinition) {
             return $newDefinition($sl, $oldDefinition($sl));

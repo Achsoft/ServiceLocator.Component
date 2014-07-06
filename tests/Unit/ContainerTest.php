@@ -207,6 +207,24 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         });
     }
     
+    /**
+     * #6 0.1.3
+     */
+    public function testExtendObjectNotClosure()
+    {
+        $object = new \stdClass();
+        $object->str = 'foo';
+        $this->sc->register('bar', $object);
+        $this->sc->extend('bar', function ($c, $o) {
+            $o->str = 'bar';
+            return $o;
+        });
+        
+        $bar = $this->sc->resolve('bar'); // produces the error
+        
+        $this->assertEquals('bar', $bar->str);
+    }
+    
     public function testRegisterAs()
     {
         $this->sc->registerAs('tenth', 'first');
