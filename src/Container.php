@@ -22,7 +22,7 @@ use Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException;
  * 
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ServiceLocator
- * @version 0.1.1
+ * @version 0.1.2
  * @since 0.1.0
  */
 class Container
@@ -289,7 +289,7 @@ class Container
      * @param \Closure $newDefinition Extend the definition
      * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
      *     if the identifier is not registered
-     * @since 0.1.0
+     * @since 0.1.2
      */
     public function registerAs($newId, $id, \Closure $newDefinition = null)
     {
@@ -298,7 +298,10 @@ class Container
             throw new NotFoundException(sprintf($message, $id));
         }
         
-        $this->register($newId, $this->registry[$id]);
+        // object has to be cloned to remove its reference
+        is_object($this->registry[$id])
+            ? $this->register($newId, clone $this->registry[$id])
+            : $this->register($newId, $this->registry[$id]);
         
         if (isset($newDefinition)) {
             $this->extend($newId, $newDefinition);

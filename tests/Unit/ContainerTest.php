@@ -214,6 +214,25 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Fix 0.1.2
+     */
+    public function testRegisterAsRemoveObjectReferece()
+    {
+        $object = new \stdClass();
+        $object->str = 'foo';
+    
+        $this->sc->register('foo', $object);
+        $this->sc->registerAs('bar', 'foo');
+        
+        $foo = $this->sc->resolve('foo');
+        $bar = $this->sc->resolve('bar');
+        $bar->str = 'bar';
+        
+        $this->assertEquals('foo', $foo->str);
+        $this->assertEquals('bar', $bar->str);
+    }
+    
+    /**
      * @depends testExtend
      */
     public function testRegisterAsAndExtend()
