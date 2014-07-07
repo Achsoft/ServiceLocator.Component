@@ -130,7 +130,12 @@ class Container
         
         $oldDefinition = $this->registry[$id];
         $extended = function ($sl) use ($oldDefinition, $newDefinition) {
-            return $newDefinition($sl, $oldDefinition($sl));
+            $object = $oldDefinition($sl);
+            if (is_null($object)) {
+                $message = 'Unable to resolve component or service. Old defintion returns null value.';
+                throw new InvalidDefinitionException($message);
+            }
+            return $newDefinition($sl, $object);
         };
         
         $this->modify($id, $extended);

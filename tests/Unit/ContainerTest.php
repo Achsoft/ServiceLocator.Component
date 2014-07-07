@@ -225,6 +225,25 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('bar', $bar->str);
     }
     
+    public function testExtendClosureReturnNull()
+    {
+        $e = '\Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException';
+        $this->setExpectedException($e);
+    
+        $definition = function () {
+            $object = new \stdClass();
+            // forget to return $object
+        };
+
+        $this->sc->register('bar', $definition);
+        $this->sc->extend('bar', function ($c, $o) {
+            $o->str = 'bar';
+            return $o;
+        });
+        
+        $bar = $this->sc->resolve('bar');
+    }
+    
     public function testRegisterAs()
     {
         $this->sc->registerAs('tenth', 'first');
