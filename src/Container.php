@@ -174,7 +174,7 @@ class Container
      * 
      * @param string $id Component or service identifier
      * @return boolean whether the component or service is locked
-     * @since 0.1
+     * @since 0.1.0
      */
     public function locked($id)
     {
