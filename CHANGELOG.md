@@ -1,3 +1,8 @@
+## 0.1.4 (2014.07.07)
+
+* Fixed to throw an exception if extending a closure definition which returns
+  null value
+
 ## 0.1.3 (2014.07.07)
 
 * closes #6 Wrap the object with a closure so it does not produce error

@@ -22,7 +22,7 @@ use Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException;
  * 
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ServiceLocator
- * @version 0.1.3
+ * @version 0.1.4
  * @since 0.1.0
  */
 class Container
