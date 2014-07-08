@@ -246,7 +246,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     
     public function testRegisterAs()
     {
-        $this->sc->registerAs('tenth', 'first');
+        $this->sc->copy('first', 'tenth');
         $this->assertInstanceOf('\Test\Fixture\FirstDependency', $this->sc->get('tenth'));
     }
     
@@ -259,7 +259,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $object->str = 'foo';
     
         $this->sc->add('foo', $object);
-        $this->sc->registerAs('bar', 'foo');
+        $this->sc->copy('foo', 'bar');
         
         $foo = $this->sc->get('foo');
         $bar = $this->sc->get('bar');
@@ -274,7 +274,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterAsAndExtend()
     {
-        $this->sc->registerAs('tenth', 'first', function ($sl, $f) {
+        $this->sc->copy('first', 'tenth', function ($sl, $f) {
             $f->bar = 'bar';
             return $f;
         });
@@ -287,13 +287,13 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $e = '\Achsoft\Component\ServiceLocator\Exception\InvalidIdentifierException';
         $this->setExpectedException($e);
-        $this->sc->registerAs('first', 'second');
+        $this->sc->copy('first', 'second');
     }
     
     public function testRegisterAsUnregisteredId()
     {
         $e = '\Achsoft\Component\ServiceLocator\Exception\NotFoundException';
         $this->setExpectedException($e);
-        $this->sc->registerAs('tenth', 'something');
+        $this->sc->copy('something', 'tenth');
     }
 }

@@ -292,21 +292,22 @@ class Container implements ContainerInterface
      * Register or duplicate existing definition as a new one.
      * 
      * ```php
-     * $sc->registerAs('admin.mailer', 'mailer', function ($sl, $mailer) {
+     * $sc->copy('mailer', 'admin.mailer', function ($sl, $mailer) {
      *     $mailer->setSender('Admin');
      *     $mailer->setFrom('admin@email');
      *     return $mailer;
      * });
      * 
      * ```
-     * @param string $newId New component or service identifer
+     * 
      * @param string $id Component or service identifier
+     * @param string $newId New component or service identifer
      * @param \Closure $newDefinition Extend the definition
      * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
      *     if the identifier is not registered
-     * @since 0.1.2
+     * @since 0.2.0
      */
-    public function registerAs($newId, $id, \Closure $newDefinition = null)
+    public function copy($id, $newId, \Closure $newDefinition = null)
     {
         if (!$this->has($id)) {
             $message = 'Identifier %s is not registered.';

@@ -186,7 +186,7 @@ Duplicating A Registered Component or Service
 To duplicate an existing definition, use `registerAs()` method.
 
 ```php
-$sc->registerAs('new.mailer', 'mailer');
+$sc->copy('mailer', 'new.mailer');
 
 ```
 
@@ -195,7 +195,7 @@ $sc->registerAs('new.mailer', 'mailer');
 Third argument is optional whether the definition need to be extended. It works like `extend()` method.
 
 ```php
-$sc->registerAs('admin.mailer', 'mailer', function ($sl, $mailer) {
+$sc->copy('mailer', 'admin.mailer', function ($sl, $mailer) {
      $mailer->setSender('Admin');
      $mailer->setFrom('admin@email');
      return $mailer;

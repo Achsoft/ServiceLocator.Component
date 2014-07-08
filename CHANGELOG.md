@@ -5,6 +5,8 @@
   package
 * Rename `Container::modify()` to `Container::set()`
 * Rename `Container::register()` to `Container::add()`
+* Rename `Container::registerAs()` to `Container::copy()`
+* 
 
 ## 0.1.4 (2014.07.07)
 
