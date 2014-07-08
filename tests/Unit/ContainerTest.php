@@ -129,7 +129,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $e = '\Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException';
         $this->setExpectedException($e);
-        $this->sc->modify('locked', function ($sl) {
+        $this->sc->set('locked', function ($sl) {
             // new definition
         });
     }
@@ -141,7 +141,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->sc->locked('locked'));
         
         // modify
-        $this->sc->modify('locked', function ($sl) {
+        $this->sc->set('locked', function ($sl) {
             return 'foo';
         });
         

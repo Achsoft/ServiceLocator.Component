@@ -211,7 +211,7 @@ To set a component or service to a new definition or replace an existing one, us
 
 ```php
 // to replace older definition
-$sc->modify('mailer', function () {
+$sc->set('mailer', function () {
     return new \Namespace\NewMailer();
 });
 

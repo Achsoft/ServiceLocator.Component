@@ -3,6 +3,7 @@
 * `Container::registered()` is removed
 * Implements *ContainerInterface* from *container-interop/container-interop*
   package
+* Rename `Container::modify()` to `Container::set()`
 
 ## 0.1.4 (2014.07.07)
 

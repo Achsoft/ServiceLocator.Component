@@ -57,7 +57,7 @@ class Container implements ContainerInterface
     {
         if (!empty($config)) {
             foreach ($config as $key => $value) {
-                $this->modify($key, $value);
+                $this->set($key, $value);
             }
         }
     }
@@ -140,7 +140,7 @@ class Container implements ContainerInterface
             return $newDefinition($sl, $object);
         };
         
-        $this->modify($id, $extended);
+        $this->set($id, $extended);
     }
     
     /**
@@ -191,9 +191,9 @@ class Container implements ContainerInterface
      * @param mixed $value Component or service definition
      * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException 
      *     if the identifier is locked
-     * @since 0.1.0
+     * @since 0.2.0
      */
-    public function modify($id, $value)
+    public function set($id, $value)
     {
         if ($this->locked($id)) {
             $message = 'Identifier %s is locked.';
@@ -285,7 +285,7 @@ class Container implements ContainerInterface
             }
         }
         
-        $this->modify($id, $definition);
+        $this->set($id, $definition);
     }
     
     /**

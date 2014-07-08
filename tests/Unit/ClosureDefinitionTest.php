@@ -45,7 +45,7 @@ class ClosureDefinitionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', $sc->get('a'));
         $this->assertEquals('foo', $sc->get('b'));
         
-        $sc->modify('string', 'bar');
+        $sc->set('string', 'bar');
         
         $this->assertSame($sc->get('a'), $sc->get('b'));
         $this->assertEquals('bar', $sc->get('a'));
