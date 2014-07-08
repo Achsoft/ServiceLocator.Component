@@ -23,8 +23,8 @@ class ClosureDefinitionTest extends \PHPUnit_Framework_TestCase
     {
         $this->sc = new \Achsoft\Component\ServiceLocator\Container();
         
-        $this->sc->register('string', 'foo');
-        $this->sc->register('closure', function() {
+        $this->sc->add('string', 'foo');
+        $this->sc->add('closure', function() {
             return 'foo';
         });
     }
@@ -33,11 +33,11 @@ class ClosureDefinitionTest extends \PHPUnit_Framework_TestCase
     {
         $sc = $this->sc;
         
-        $sc->register('a', function($sc) {
+        $sc->add('a', function($sc) {
             return $sc->get('string');
         });
         
-        $sc->register('b', function() use ($sc) {
+        $sc->add('b', function() use ($sc) {
             return $sc->get('string');
         });
         

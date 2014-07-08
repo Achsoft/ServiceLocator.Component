@@ -215,7 +215,7 @@ class Container implements ContainerInterface
      * 
      * ```php
      * // eager loading
-     * $sc->register('identifier', new \Namespace\Mailer());
+     * $sc->add('identifier', new \Namespace\Mailer());
      *
      * ```
      * 
@@ -223,14 +223,14 @@ class Container implements ContainerInterface
      * 
      * ```php
      * // lazy loading
-     * $sc->register('identifier', '\Namespace\Mailer');
+     * $sc->add('identifier', '\Namespace\Mailer');
      * 
      * ```
      * 
      * Example of definition without dependency,
      * 
      * ```php
-     * $sc->register('identifier', function() {
+     * $sc->add('identifier', function() {
      *     return new \Namespace\Mailer();
      * });
      * 
@@ -239,13 +239,13 @@ class Container implements ContainerInterface
      * Example of definition with dependencies,
      * 
      * ```php
-     * $sc->register('request', function(){
+     * $sc->add('request', function(){
      *     return new \Namespace\Request();
      * });
      * 
      * ...
      * 
-     * $sc->register('router', function ($sl) {
+     * $sc->add('router', function ($sl) {
      *     return new \Namespace\Router($sc->get('request'));
      * });
      * 
@@ -257,9 +257,9 @@ class Container implements ContainerInterface
      *     if the identifier is already registered
      * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException
      *     if given closure have more than one parameter
-     * @since 0.1.0
+     * @since 0.2.0
      */
-    public function register($id, $definition)
+    public function add($id, $definition)
     {
         if ($this->has($id)) {
             $message = 'Identifier %s is already registered.';
@@ -315,8 +315,8 @@ class Container implements ContainerInterface
         
         // object has to be cloned to remove its reference
         is_object($this->registry[$id])
-            ? $this->register($newId, clone $this->registry[$id])
-            : $this->register($newId, $this->registry[$id]);
+            ? $this->add($newId, clone $this->registry[$id])
+            : $this->add($newId, $this->registry[$id]);
         
         if (isset($newDefinition)) {
             $this->extend($newId, $newDefinition);

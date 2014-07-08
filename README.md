@@ -78,21 +78,21 @@ To register a component or service, provide a string identifier and a definition
 Eager loading example,
 
 ```php
-$sc->register('mailer', new \Namespace\Mailer());
+$sc->add('mailer', new \Namespace\Mailer());
 
 ```
 
 Lazy loading example,
 
 ```php
-$sc->register('mailer', '\Namespace\Mailer');
+$sc->add('mailer', '\Namespace\Mailer');
 
 ```
 
 or using closure,
 
 ```php
-$sc->register('mailer', function () {
+$sc->add('mailer', function () {
     return new \Namespace\Mailer();
 });
 
@@ -102,7 +102,7 @@ Note that we use `$sc` parameter to pass the Service Container instance to resol
 
 ```php
 // The dependency
-$sc->register('request', function () {
+$sc->add('request', function () {
     return new \Namespace\Request();
 });
 
@@ -111,7 +111,7 @@ $sc->register('request', function () {
 Resolving by constructor injection,
 
 ```php
-$sc->register('router', function ($sc) {
+$sc->add('router', function ($sc) {
     return new \Namespace\Router($sc->get('request'));
 });
 
@@ -120,7 +120,7 @@ $sc->register('router', function ($sc) {
 This is also valid,
 
 ```php
-$sc->register('router', function () use ($sc) {
+$sc->add('router', function () use ($sc) {
     return new \Namespace\Router($sc->get('request'));
 });
 
@@ -129,7 +129,7 @@ $sc->register('router', function () use ($sc) {
 Resolving by property injection,
 
 ```php
-$sc->register('router', function ($sc) {
+$sc->add('router', function ($sc) {
     $router = new \Namespace\Router();
     $router->request = $sc->get('request');
     return $router;
@@ -140,7 +140,7 @@ $sc->register('router', function ($sc) {
 Works like above,
 
 ```php
-$sc->register('router', function () use ($sc) {
+$sc->add('router', function () use ($sc) {
     $router = new \Namespace\Router();
     $router->request = $sc->get('request');
     return $router;
@@ -151,7 +151,7 @@ $sc->register('router', function () use ($sc) {
 Resolving by setter injection,
 
 ```php
-$sc->register('router', function ($sc) {
+$sc->add('router', function ($sc) {
     $router = new \Namespace\Router();
     $router->setRequest($sc->get('request'));
     return $router;

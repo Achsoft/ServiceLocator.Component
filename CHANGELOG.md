@@ -4,6 +4,7 @@
 * Implements *ContainerInterface* from *container-interop/container-interop*
   package
 * Rename `Container::modify()` to `Container::set()`
+* Rename `Container::register()` to `Container::add()`
 
 ## 0.1.4 (2014.07.07)
 

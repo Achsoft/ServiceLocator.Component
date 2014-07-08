@@ -28,7 +28,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->sc = new \Achsoft\Component\ServiceLocator\Container($config);
         
         // locked definition
-        $this->sc->register('locked', function ($sl) {
+        $this->sc->add('locked', function ($sl) {
             // some definition
         });
         $this->sc->lock('locked');
@@ -51,7 +51,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $e = '\Achsoft\Component\ServiceLocator\Exception\InvalidIdentifierException';
         $this->setExpectedException($e);
-        $this->sc->register('first', function ($sl){
+        $this->sc->add('first', function ($sl){
             // some definition
         });
     }
@@ -59,11 +59,11 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function testRegisterVariables()
     {
         // register a string
-        $this->sc->register('string', 'foo');
+        $this->sc->add('string', 'foo');
         // register an array
-        $this->sc->register('array', ['foo', 'bar', 'baz']);
+        $this->sc->add('array', ['foo', 'bar', 'baz']);
         // register an object
-        $this->sc->register('object', new \stdClass());
+        $this->sc->add('object', new \stdClass());
         
         $this->assertSame('foo', $this->sc->get('string'));
         $this->assertSame(['foo', 'bar', 'baz'], $this->sc->get('array'));
@@ -72,7 +72,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     
     public function testRegisterClosureZeroParameter()
     {
-        $this->sc->register('foo', function () {
+        $this->sc->add('foo', function () {
             return 'foo';
         });
         $foo = $this->sc->get('foo');
@@ -84,7 +84,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $e = '\Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException';
         $this->setExpectedException($e);
-        $this->sc->register('invalid', function ($one, $two, $three) {
+        $this->sc->add('invalid', function ($one, $two, $three) {
             // some definition
         });
     }
@@ -214,7 +214,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $object = new \stdClass();
         $object->str = 'foo';
-        $this->sc->register('bar', $object);
+        $this->sc->add('bar', $object);
         $this->sc->extend('bar', function ($c, $o) {
             $o->str = 'bar';
             return $o;
@@ -235,7 +235,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
             // forget to return $object
         };
 
-        $this->sc->register('bar', $definition);
+        $this->sc->add('bar', $definition);
         $this->sc->extend('bar', function ($c, $o) {
             $o->str = 'bar';
             return $o;
@@ -258,7 +258,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $object = new \stdClass();
         $object->str = 'foo';
     
-        $this->sc->register('foo', $object);
+        $this->sc->add('foo', $object);
         $this->sc->registerAs('bar', 'foo');
         
         $foo = $this->sc->get('foo');
