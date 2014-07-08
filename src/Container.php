@@ -22,7 +22,7 @@ use Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException;
  * 
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ServiceLocator
- * @version 0.1.4
+ * @version 0.2.0
  * @since 0.1.0
  */
 class Container
@@ -319,20 +319,6 @@ class Container
         if (isset($newDefinition)) {
             $this->extend($newId, $newDefinition);
         }
-    }
-    
-    /**
-     * Check whether a component or service had been registered.
-     * 
-     * @param string $id Component or service identifier
-     * @return boolean Whether the identifier is registered
-     * @since 0.1.0
-     * @deprecated Use \Achsoft\Component\ServiceLocator\Container::has() instead.
-     *     Will be removed.
-     */
-    public function registered($id)
-    {
-        return $this->has($id);
     }
     
     /**

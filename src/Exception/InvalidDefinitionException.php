@@ -19,7 +19,7 @@ use Achsoft\Component\ServiceLocator\Exception\ContainerException;
  *
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ServiceLocator\Exception
- * @version 0.1.4
+ * @version 0.2.0
  * @since 0.1.0
  */
 class InvalidDefinitionException extends ContainerException

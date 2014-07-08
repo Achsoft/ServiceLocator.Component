@@ -1,3 +1,7 @@
+## 0.2.0 (2014.07.08) - BC Breaks
+
+* `Container::registered()` is removed
+
 ## 0.1.4 (2014.07.07)
 
 * Fixed to throw an exception if extending a closure definition which returns
