@@ -330,7 +330,7 @@ class Container implements ContainerInterface
      * @return mixed Resolved component or service instance
      * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
      *     if the identifier is not registered if the identifier is not registered
-     * @since 0.1.0
+     * @since 0.2.0
      */
     public function get($id)
     {
