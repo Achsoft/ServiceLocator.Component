@@ -40,7 +40,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->sc->has('second'));
         $this->assertTrue($this->sc->has('dependant'));
         
-        $dependant = $this->sc->resolve('dependant');
+        $dependant = $this->sc->get('dependant');
         
         $this->assertInstanceOf('\Test\Fixture\Dependant', $dependant);
         $this->assertInstanceOf('\Test\Fixture\FirstDependency', $dependant->first);
@@ -65,9 +65,9 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         // register an object
         $this->sc->register('object', new \stdClass());
         
-        $this->assertSame('foo', $this->sc->resolve('string'));
-        $this->assertSame(['foo', 'bar', 'baz'], $this->sc->resolve('array'));
-        $this->assertInstanceOf('\stdClass', $this->sc->resolve('object'));
+        $this->assertSame('foo', $this->sc->get('string'));
+        $this->assertSame(['foo', 'bar', 'baz'], $this->sc->get('array'));
+        $this->assertInstanceOf('\stdClass', $this->sc->get('object'));
     }
     
     public function testRegisterClosureZeroParameter()
@@ -75,7 +75,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->sc->register('foo', function () {
             return 'foo';
         });
-        $foo = $this->sc->resolve('foo');
+        $foo = $this->sc->get('foo');
         
         $this->assertEquals('foo', $foo);
     }
@@ -93,7 +93,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $e = '\Achsoft\Component\ServiceLocator\Exception\NotFoundException';
         $this->setExpectedException($e);
-        $this->sc->resolve('something');
+        $this->sc->get('something');
     }
     
     public function testUnregister()
@@ -145,7 +145,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
             return 'foo';
         });
         
-        $this->assertEquals('foo', $this->sc->resolve('locked'));
+        $this->assertEquals('foo', $this->sc->get('locked'));
     }
     
     public function testUnlockUnregisteredDefinition()
@@ -165,7 +165,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
             return $d;
         });
         
-        $dependant = $this->sc->resolve('dependant');
+        $dependant = $this->sc->get('dependant');
         $this->assertInstanceOf('\Test\Fixture\ThirdDependency', $dependant->first);
     }
     
@@ -176,7 +176,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
             return $f;
         });
         
-        $first = $this->sc->resolve('first');
+        $first = $this->sc->get('first');
         $this->assertEquals('foo', $first->foo);
     }
     
@@ -220,7 +220,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
             return $o;
         });
         
-        $bar = $this->sc->resolve('bar'); // produces the error
+        $bar = $this->sc->get('bar'); // produces the error
         
         $this->assertEquals('bar', $bar->str);
     }
@@ -241,13 +241,13 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
             return $o;
         });
         
-        $bar = $this->sc->resolve('bar');
+        $bar = $this->sc->get('bar');
     }
     
     public function testRegisterAs()
     {
         $this->sc->registerAs('tenth', 'first');
-        $this->assertInstanceOf('\Test\Fixture\FirstDependency', $this->sc->resolve('tenth'));
+        $this->assertInstanceOf('\Test\Fixture\FirstDependency', $this->sc->get('tenth'));
     }
     
     /**
@@ -261,8 +261,8 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->sc->register('foo', $object);
         $this->sc->registerAs('bar', 'foo');
         
-        $foo = $this->sc->resolve('foo');
-        $bar = $this->sc->resolve('bar');
+        $foo = $this->sc->get('foo');
+        $bar = $this->sc->get('bar');
         $bar->str = 'bar';
         
         $this->assertEquals('foo', $foo->str);
@@ -279,7 +279,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
             return $f;
         });
         
-        $tenth = $this->sc->resolve('tenth');
+        $tenth = $this->sc->get('tenth');
         $this->assertEquals('bar', $tenth->bar);
     }
     

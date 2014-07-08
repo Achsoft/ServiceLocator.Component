@@ -112,7 +112,7 @@ Resolving by constructor injection,
 
 ```php
 $sc->register('router', function ($sc) {
-    return new \Namespace\Router($sc->resolve('request'));
+    return new \Namespace\Router($sc->get('request'));
 });
 
 ```
@@ -121,7 +121,7 @@ This is also valid,
 
 ```php
 $sc->register('router', function () use ($sc) {
-    return new \Namespace\Router($sc->resolve('request'));
+    return new \Namespace\Router($sc->get('request'));
 });
 
 ```
@@ -131,7 +131,7 @@ Resolving by property injection,
 ```php
 $sc->register('router', function ($sc) {
     $router = new \Namespace\Router();
-    $router->request = $sc->resolve('request');
+    $router->request = $sc->get('request');
     return $router;
 });
 
@@ -142,7 +142,7 @@ Works like above,
 ```php
 $sc->register('router', function () use ($sc) {
     $router = new \Namespace\Router();
-    $router->request = $sc->resolve('request');
+    $router->request = $sc->get('request');
     return $router;
 });
 
@@ -153,7 +153,7 @@ Resolving by setter injection,
 ```php
 $sc->register('router', function ($sc) {
     $router = new \Namespace\Router();
-    $router->setRequest($sc->resolve('request'));
+    $router->setRequest($sc->get('request'));
     return $router;
 });
 
@@ -173,7 +173,7 @@ Example,
 
 ```php
 $sc->extend('mailer', function ($sc, $mailer) {
-     $security = $sc->resolve('security');
+     $security = $sc->get('security');
      $mailer->setFrom($security->getAdminEmail());
      return $mailer;
 });
@@ -190,7 +190,7 @@ $sc->registerAs('new.mailer', 'mailer');
 
 ```
 
-`$sc->resolve('new.mailer')` and `$sc->resolve('mailer')` creates the same instance.
+`$sc->get('new.mailer')` and `$sc->get('mailer')` creates the same instance.
 
 Third argument is optional whether the definition need to be extended. It works like `extend()` method.
 

@@ -1,6 +1,8 @@
 ## 0.2.0 (2014.07.08) - BC Breaks
 
 * `Container::registered()` is removed
+* Implements *ContainerInterface* from *container-interop/container-interop*
+  package
 
 ## 0.1.4 (2014.07.07)
 

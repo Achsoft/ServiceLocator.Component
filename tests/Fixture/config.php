@@ -27,8 +27,8 @@ return [
     
     // closure with two dependencies
     'dependant' => function ($sl) {
-        $first = $sl->resolve('first');
-        $second = $sl->resolve('second');
+        $first = $sl->get('first');
+        $second = $sl->get('second');
         return new \Test\Fixture\Dependant($first, $second);
     }
 ];

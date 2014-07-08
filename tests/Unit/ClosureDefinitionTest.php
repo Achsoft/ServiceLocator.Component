@@ -34,21 +34,21 @@ class ClosureDefinitionTest extends \PHPUnit_Framework_TestCase
         $sc = $this->sc;
         
         $sc->register('a', function($sc) {
-            return $sc->resolve('string');
+            return $sc->get('string');
         });
         
         $sc->register('b', function() use ($sc) {
-            return $sc->resolve('string');
+            return $sc->get('string');
         });
         
-        $this->assertSame($sc->resolve('a'), $sc->resolve('b'));
-        $this->assertEquals('foo', $sc->resolve('a'));
-        $this->assertEquals('foo', $sc->resolve('b'));
+        $this->assertSame($sc->get('a'), $sc->get('b'));
+        $this->assertEquals('foo', $sc->get('a'));
+        $this->assertEquals('foo', $sc->get('b'));
         
         $sc->modify('string', 'bar');
         
-        $this->assertSame($sc->resolve('a'), $sc->resolve('b'));
-        $this->assertEquals('bar', $sc->resolve('a'));
-        $this->assertEquals('bar', $sc->resolve('b'));
+        $this->assertSame($sc->get('a'), $sc->get('b'));
+        $this->assertEquals('bar', $sc->get('a'));
+        $this->assertEquals('bar', $sc->get('b'));
     }
 }

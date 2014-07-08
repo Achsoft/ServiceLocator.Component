@@ -12,6 +12,8 @@
 
 namespace Achsoft\Component\ServiceLocator;
 
+use Interop\Container\ContainerInterface;
+
 use Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException;
 use Achsoft\Component\ServiceLocator\Exception\InvalidIdentifierException;
 use Achsoft\Component\ServiceLocator\Exception\NotFoundException;
@@ -25,7 +27,7 @@ use Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException;
  * @version 0.2.0
  * @since 0.1.0
  */
-class Container
+class Container implements ContainerInterface
 {
     /**
      * Variable to store names of locked component or service.
@@ -70,7 +72,7 @@ class Container
      * 
      * ```php
      * $sl->extend('mailer', function ($sl, $mailer) {
-     *     $security = $sl->resolve('security');
+     *     $security = $sl->get('security');
      *     $mailer->setFrom($security->getAdminEmail());
      *     return $mailer;
      * })
@@ -244,7 +246,7 @@ class Container
      * ...
      * 
      * $sc->register('router', function ($sl) {
-     *     return new \Namespace\Router($sc->resolve('request'));
+     *     return new \Namespace\Router($sc->get('request'));
      * });
      * 
      * ```
@@ -330,7 +332,7 @@ class Container
      *     if the identifier is not registered if the identifier is not registered
      * @since 0.1.0
      */
-    public function resolve($id)
+    public function get($id)
     {
         if (!isset($this->registry[$id])) {
             $message = 'Identifier "%s" is not registered.';
