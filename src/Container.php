@@ -379,9 +379,9 @@ class Container implements ContainerInterface
      * @param string $name Component or service identifier
      * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException
      *     if the identifier is locked
-     * @since 0.1.0
+     * @since 0.2.0
      */
-    public function unregister($id)
+    public function remove($id)
     {
         if ($this->locked($id)) {
             $message = 'Identifier %s is locked.';

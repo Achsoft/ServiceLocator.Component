@@ -231,5 +231,5 @@ Use `locked()` method to check whether a component or service definition is lock
 Unregistering or Removing A Definition
 --------------------------------------
 
-To remove a definition, use `unregister()` method.
+To remove a definition, use `remove()` method.
 

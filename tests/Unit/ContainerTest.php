@@ -98,7 +98,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     
     public function testUnregister()
     {
-        $this->sc->unregister('first');
+        $this->sc->remove('first');
         $this->assertFalse($this->sc->has('first'));
     }
     
@@ -106,7 +106,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $e = '\Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException';
         $this->setExpectedException($e);
-        $this->sc->unregister('locked');
+        $this->sc->remove('locked');
     }
     
     public function testLock()
