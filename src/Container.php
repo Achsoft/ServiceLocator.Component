@@ -25,7 +25,6 @@ use Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException;
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ServiceLocator
  * @version 0.2.0
- * @since 0.1.0
  */
 class Container implements ContainerInterface
 {
@@ -33,7 +32,6 @@ class Container implements ContainerInterface
      * Variable to store names of locked component or service.
      * 
      * @var array
-     * @since 0.1.0
      */
     private $locked = [];
     
@@ -41,7 +39,6 @@ class Container implements ContainerInterface
      * Variable to store registered components or services.
      * 
      * @var array
-     * @since 0.1.0
      */
     private $registry = [];
     
@@ -51,7 +48,6 @@ class Container implements ContainerInterface
      * Construct configurations from an array.
      * 
      * @param array $config An array of configurations
-     * @since 0.1.0
      */
     public function __construct($config = [])
     {
@@ -87,7 +83,6 @@ class Container implements ContainerInterface
      *     if the identifier is locked
      * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException
      *     if the closure does not have exactly two parameters
-     * @since 0.1.3
      */
     public function extend($id, \Closure $newDefinition)
     {
@@ -148,7 +143,6 @@ class Container implements ContainerInterface
      * 
      * @param string $id Component or service identifier
      * @return boolean Whether the identifier is registered
-     * @since 0.1.1
      */
     public function has($id)
     {
@@ -159,7 +153,6 @@ class Container implements ContainerInterface
      * Lock or protect a component or service definition from being modified.
      * 
      * @param string $id Component or service identifier
-     * @since 0.1.0
      */
     public function lock($id)
     {
@@ -176,7 +169,6 @@ class Container implements ContainerInterface
      * 
      * @param string $id Component or service identifier
      * @return boolean whether the component or service is locked
-     * @since 0.1.0
      */
     public function locked($id)
     {
@@ -191,7 +183,6 @@ class Container implements ContainerInterface
      * @param mixed $value Component or service definition
      * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException 
      *     if the identifier is locked
-     * @since 0.2.0
      */
     public function set($id, $value)
     {
@@ -257,7 +248,6 @@ class Container implements ContainerInterface
      *     if the identifier is already registered
      * @throws \Achsoft\Component\ServiceLocator\Exception\InvalidDefinitionException
      *     if given closure have more than one parameter
-     * @since 0.2.0
      */
     public function add($id, $definition)
     {
@@ -305,7 +295,6 @@ class Container implements ContainerInterface
      * @param \Closure $newDefinition Extend the definition
      * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
      *     if the identifier is not registered
-     * @since 0.2.0
      */
     public function copy($id, $newId, \Closure $newDefinition = null)
     {
@@ -331,7 +320,6 @@ class Container implements ContainerInterface
      * @return mixed Resolved component or service instance
      * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
      *     if the identifier is not registered if the identifier is not registered
-     * @since 0.2.0
      */
     public function get($id)
     {
@@ -358,7 +346,6 @@ class Container implements ContainerInterface
      * @param string $name Component or service identifier
      * @throws \Achsoft\Component\ServiceLocator\Exception\NotFoundException
      *     if the identifier is not registered
-     * @since 0.1.0
      */
     public function unlock($id)
     {
@@ -379,7 +366,6 @@ class Container implements ContainerInterface
      * @param string $name Component or service identifier
      * @throws \Achsoft\Component\ServiceLocator\Exception\ProtectedDefinitionException
      *     if the identifier is locked
-     * @since 0.2.0
      */
     public function remove($id)
     {

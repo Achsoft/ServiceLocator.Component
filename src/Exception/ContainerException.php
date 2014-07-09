@@ -18,7 +18,6 @@ namespace Achsoft\Component\ServiceLocator\Exception;
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ServiceLocator\Exception
  * @version 0.2.0
- * @since 0.1.0
  */
 class ContainerException extends \RuntimeException
 {
