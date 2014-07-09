@@ -20,7 +20,6 @@ use Achsoft\Component\ServiceLocator\Exception\ContainerException;
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ServiceLocator\Exception
  * @version 0.1.4
- * @since 0.1.0
  */
 class ProtectedDefinitionException extends ContainerException
 {
